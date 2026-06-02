@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode design tokens */
+    --bg-primary: #FAF9F6;
+    --bg-card: #FFFFFF;
+    --bg-card-alt: #F0F4F0;
+    --text-primary: #1C2B24;
+    --text-secondary: #5A6E63;
+    --text-muted: #8A9A91;
+    --border: #D8E2DA;
+    --accent: #2E7D4E;
+    --accent-hover: #1F5E3A;
+    --accent-light: #E4F0E8;
+    --accent-bright: #3CB371;
+
+    /* Transition tokens */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.10);
+    --shadow-xl: 0 20px 60px rgba(0,0,0,0.14);
+
+    /* shadcn variables */
+    --background: 60 20% 97%;
+    --foreground: 150 20% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 150 20% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 20% 14%;
+    --primary: 150 46% 33%;
+    --primary-foreground: 60 20% 97%;
+    --secondary: 140 17% 95%;
+    --secondary-foreground: 150 20% 14%;
+    --muted: 140 17% 95%;
+    --muted-foreground: 150 10% 50%;
+    --accent: 140 17% 95%;
+    --accent-foreground: 150 20% 14%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 140 17% 86%;
+    --input: 140 17% 86%;
+    --ring: 150 46% 33%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark mode design tokens */
+    --bg-primary: #0D1B14;
+    --bg-card: #152B20;
+    --bg-card-alt: #1A3528;
+    --text-primary: #E8F0EC;
+    --text-secondary: #A3B5AD;
+    --text-muted: #6B7E75;
+    --border: #2A4A38;
+    --accent: #3CB371;
+    --accent-hover: #4AD68A;
+    --accent-light: #1A3528;
+    --accent-bright: #5CE89E;
+
+    /* shadcn variables - dark */
+    --background: 150 30% 8%;
+    --foreground: 140 20% 93%;
+    --card: 150 28% 13%;
+    --card-foreground: 140 20% 93%;
+    --popover: 150 28% 13%;
+    --popover-foreground: 140 20% 93%;
+    --primary: 150 47% 47%;
+    --primary-foreground: 150 30% 8%;
+    --secondary: 150 25% 16%;
+    --secondary-foreground: 140 20% 93%;
+    --muted: 150 25% 16%;
+    --muted-foreground: 150 10% 45%;
+    --accent: 150 25% 16%;
+    --accent-foreground: 140 20% 93%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 150 25% 22%;
+    --input: 150 25% 22%;
+    --ring: 150 47% 47%;
+  }
+
+  * {
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Scroll reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* Nav link underline animation */
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width var(--transition-base);
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  /* Card hover effect */
+  .bento-card {
+    transition: box-shadow var(--transition-base), border-color var(--transition-base);
+  }
+
+  .bento-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+  }
+
+  .bento-card:hover .card-icon {
+    transform: scale(1.05);
+  }
+
+  .card-icon {
+    transition: transform 0.4s ease;
+  }
+
+  /* Hero image frame hover */
+  .hero-frame {
+    transition: border-color 0.5s ease;
+  }
+
+  .hero-frame:hover {
+    border-color: var(--accent);
+  }
+}
